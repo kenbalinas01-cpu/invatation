@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Special Plan</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #bfa8e6, #ecdcf7);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Flowers */
+.top-left-floral-bg {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  font-size: 110px;
+  opacity: .22;
+  z-index: 1;
+  pointer-events: none;
+  filter: grayscale(60%);
+  transform: rotate(-15deg);
+}
+
+.flower-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.flower {
+  position: absolute;
+  font-size: 28px;
+  opacity: .25;
+  filter: grayscale(40%) blur(.3px);
+  animation: floatAesthetic 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatAesthetic {
+  0% { transform: translateY(0) rotate(0); opacity: .18; }
+  50% { opacity: .32; }
+  100% { transform: translateY(-40px) rotate(20deg); opacity: .22; }
+}
+
+/* Main Card */
+.card {
+  width: 90%;
+  max-width: 440px;
+  padding: 35px 25px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255,255,255,.9);
+  border-radius: 28px;
+  box-shadow: 0 20px 45px rgba(91,46,170,.15);
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.card-header-corner {
+  display: flex;
+  justify-content: flex-start;
+  margin: -10px 0 5px;
+}
+
+.flower-icon-transparent {
+  font-size: 28px;
+  opacity: .35;
+  filter: grayscale(50%);
+}
+
+/* Text */
+h1 {
+  font-size: 1.5rem;
+  color: #3b1e6d;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtext {
+  color: #5d35a8;
+  font-size: .92rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  color: #4c1d95;
+  font-size: .95rem;
+  font-weight: 600;
+  margin: 15px 0 6px;
+}
+
+/* Buttons */
+button {
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  min-height: 80px;
+}
+
+.btn-primary {
+  padding: 12px 28px;
+  font-size: .95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  touch-action: manipulation;
+}
+
+.btn-yes, .btn-submit {
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: white;
+}
+
+.btn-yes {
+  z-index: 10;
+  transform-origin: center;
+}
+
+.btn-yes:hover, .btn-submit:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 6px 20px rgba(124,58,237,.38);
+}
+
+.btn-no {
+  background: white;
+  color: #6d28d9;
+  border: 2px solid #c4b5fd;
+}
+
+.btn-no:hover {
+  background: #f5f3ff;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 13px;
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(124,58,237,.25);
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border: 2px solid #c4b5fd;
+  border-radius: 16px;
+  background: rgba(255,255,255,.95);
+  color: #3b1e6d;
+  font-family: inherit;
+  font-size: .92rem;
+  outline: none;
+  transition: .3s;
+}
+
+input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124,58,237,.15);
+}
+
+/* Outfit Colors */
+.color-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-color {
+  flex: 1;
+  min-width: 90px;
+  padding: 12px 10px;
+  font-size: .95rem;
+  font-weight: 600;
+  border-radius: 16px;
+}
+
+.btn-color:hover {
+  transform: translateY(-2px);
+}
+
+.btn-white {
+  background: white;
+  color: #2e1065;
+  border: 2px solid #c4b5fd;
+}
+
+.btn-black {
+  background: #1e1b4b;
+  color: white;
+  border: 2px solid #1e1b4b;
+}
+
+.btn-any {
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  color: white;
+  border: none;
+}
+
+/* Steps */
+.step-section {
+  display: none;
+  opacity: 0;
+  animation: fadeIn .5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Summary */
+.summary-card {
+  background: rgba(255,255,255,.92);
+  padding: 22px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  text-align: left;
+  border: 1.5px solid rgba(196,181,253,.5);
+  box-shadow: 0 8px 24px rgba(91,46,170,.08);
+}
+
+.summary-item {
+  color: #3b1e6d;
+  font-size: .95rem;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.summary-item:last-child { margin-bottom: 0; }
+.summary-item strong { color: #6d28d9; }
+
+@media (max-width: 480px) {
+  .card { padding: 30px 20px; }
+  h1 { font-size: 1.3rem; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-left-floral-bg">🌸</div>
+
+<div class="flower-background">
+  <span class="flower" style="top:10%;left:8%">🌸</span>
+  <span class="flower" style="top:25%;left:22%;animation-delay:2s">🌸</span>
+  <span class="flower" style="top:15%;left:75%;animation-delay:1s">🌸</span>
+  <span class="flower" style="top:70%;left:12%;animation-delay:3s">🌸</span>
+  <span class="flower" style="top:80%;left:82%;animation-delay:4s">🌸</span>
+</div>
+
+<div class="card">
+
+  <div class="card-header-corner">
+    <span class="flower-icon-transparent">🌸</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="step1">
+    <h1>Will you go out with me?</h1>
+    <p class="subtext">i have to give your gift po</p>
+
+    <div class="btn-group">
+      <button class="btn-primary btn-yes" id="yesBtn" onclick="goToStep(2)">Yes</button>
+      <button class="btn-primary btn-no" id="noBtn">No</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-section" id="step2">
+    <h1>Yey! You actually said yes!</h1>
+
+    <label for="datetime">What is your free time?</label>
+    <input type="datetime-local" id="datetime">
+
+    <button class="btn-submit" onclick="saveDate()">Next Step ➔</button>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-section" id="step3">
+    <h1>Where & What to Eat?</h1>
+
+    <label for="locationInput">Where do you want to go?</label>
+    <input type="text" id="locationInput" placeholder="e.g. Coffee shop, Mall, Park...">
+
+    <label for="foodInput">What do you want to eat?</label>
+    <input type="text" id="foodInput" placeholder="e.g. Samgyupsal, Pizza, Ice cream...">
+
+    <button class="btn-submit" onclick="savePreferences()">Next Step ➔</button>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-section" id="step4">
+    <h1>What color should we wear?</h1>
+    <p class="subtext">Pick an outfit color or choose your own</p>
+
+    <div class="color-btn-group">
+      <button class="btn-color btn-white" onclick="chooseColor('White')">White</button>
+      <button class="btn-color btn-black" onclick="chooseColor('Black')">Black</button>
+      <button class="btn-color btn-any" onclick="showCustomColor()">Others</button>
+    </div>
+
+    <div id="customColorSection" style="display:none;margin-top:20px">
+      <label for="customColor">What color would you like to wear?</label>
+      <input type="text" id="customColor" placeholder="e.g. Blue, Pink, Red, Beige...">
+      <button class="btn-submit" onclick="submitCustomColor()">Use This Color</button>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-section" id="step5">
+    <h1>Please screenshot and send it to me</h1>
+
+    <div class="summary-card">
+      <div class="summary-item"><strong>Date & Time:</strong> <span id="sumTime"></span></div>
+      <div class="summary-item"><strong>Spot:</strong> <span id="sumPlace"></span></div>
+      <div class="summary-item"><strong>Food:</strong> <span id="sumFood"></span></div>
+      <div class="summary-item"><strong>Dress Code:</strong> <span id="sumDress"></span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const selectedData = { time: '', place: '', food: '', dress: '' };
+let yesScale = 1;
+
+// Navigation
+function goToStep(number) {
+  for (let i = 1; i <= 5; i++) {
+    $('step' + i).style.display = 'none';
+  }
+
+  $('step' + number).style.display = 'block';
+
+  if (number === 2) {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    $('datetime').value = now.toISOString().slice(0, 16);
+  }
+}
+
+// No button interaction
+function growYes() {
+  yesScale += .35;
+  $('yesBtn').style.transform = `scale(${yesScale})`;
+}
+
+const noBtn = $('noBtn');
+
+noBtn.addEventListener('click', e => {
+  e.preventDefault();
+  growYes();
+});
+
+noBtn.addEventListener('touchstart', e => {
+  e.preventDefault();
+  growYes();
+}, { passive: false });
+
+noBtn.addEventListener('mouseover', growYes);
+
+// Save date
+function saveDate() {
+  const value = $('datetime').value;
+
+  if (!value) return alert('Please pick a date!');
+
+  selectedData.time = new Date(value).toLocaleString('en-US', {
+    dateStyle: 'full',
+    timeStyle: 'short'
+  });
+
+  goToStep(3);
+}
+
+// Save preferences
+function savePreferences() {
+  const place = $('locationInput').value.trim();
+  const food = $('foodInput').value.trim();
+
+  if (!place || !food) {
+    return alert('Please write where you want to go and what to eat!');
+  }
+
+  selectedData.place = place;
+  selectedData.food = food;
+
+  goToStep(4);
+}
+
+// Custom outfit color
+function showCustomColor() {
+  $('customColorSection').style.display = 'block';
+  $('customColor').focus();
+}
+
+function submitCustomColor() {
+  const color = $('customColor').value.trim();
+
+  if (!color) return alert('Please enter your preferred outfit color!');
+
+  chooseColor(color);
+}
+
+// Final summary
+function chooseColor(color) {
+  selectedData.dress = color + ' Outfit';
+
+  const summary = {
+    sumTime: selectedData.time,
+    sumPlace: selectedData.place,
+    sumFood: selectedData.food,
+    sumDress: selectedData.dress
+  };
+
+  Object.entries(summary).forEach(([id, value]) => {
+    $(id).textContent = value;
+  });
+
+  goToStep(5);
+}
+</script>
+
+</body>
+</html>
