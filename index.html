@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,16 +48,16 @@ body {
 
 .flower {
   position: absolute;
-  font-size: 28px;
-  opacity: .25;
-  filter: grayscale(40%) blur(.3px);
-  animation: floatAesthetic 12s ease-in-out infinite alternate;
+  font-size: 26px;
+  opacity: .28;
+  filter: grayscale(30%) blur(0.4px);
+  animation: floatAesthetic 14s ease-in-out infinite alternate;
 }
 
 @keyframes floatAesthetic {
-  0% { transform: translateY(0) rotate(0); opacity: .18; }
-  50% { opacity: .32; }
-  100% { transform: translateY(-40px) rotate(20deg); opacity: .22; }
+  0% { transform: translateY(0) rotate(0); opacity: .15; }
+  50% { opacity: .35; }
+  100% { transform: translateY(-45px) rotate(25deg); opacity: .22; }
 }
 
 /* Main Card */
@@ -71,7 +70,7 @@ body {
   z-index: 2;
   overflow-y: auto;
   text-align: center;
-  background: rgba(255,255,255,.75);
+  background: rgba(255,255,255,.78);
   backdrop-filter: blur(20px);
   border: 1.5px solid rgba(255,255,255,.9);
   border-radius: 28px;
@@ -357,12 +356,18 @@ input:focus {
 
 <div class="top-left-floral-bg">🌸</div>
 
+<!-- Enhanced background with more scattered, harmonized flowers -->
 <div class="flower-background">
-  <span class="flower" style="top:10%;left:8%">🌸</span>
-  <span class="flower" style="top:25%;left:22%;animation-delay:2s">🌸</span>
-  <span class="flower" style="top:15%;left:75%;animation-delay:1s">🌸</span>
-  <span class="flower" style="top:70%;left:12%;animation-delay:3s">🌸</span>
-  <span class="flower" style="top:80%;left:82%;animation-delay:4s">🌸</span>
+  <span class="flower" style="top:8%; left:12%; animation-delay:0s;">🌸</span>
+  <span class="flower" style="top:20%; left:85%; animation-delay:1.5s;">🌸</span>
+  <span class="flower" style="top:32%; left:18%; animation-delay:3s;">🌸</span>
+  <span class="flower" style="top:15%; left:45%; animation-delay:2s;">🌸</span>
+  <span class="flower" style="top:50%; left:8%; animation-delay:4.5s;">🌸</span>
+  <span class="flower" style="top:65%; left:90%; animation-delay:2.5s;">🌸</span>
+  <span class="flower" style="top:82%; left:22%; animation-delay:1s;">🌸</span>
+  <span class="flower" style="top:88%; left:75%; animation-delay:3.5s;">🌸</span>
+  <span class="flower" style="top:42%; left:82%; animation-delay:5s;">🌸</span>
+  <span class="flower" style="top:75%; left:50%; animation-delay:1.8s;">🌸</span>
 </div>
 
 <div class="card">
