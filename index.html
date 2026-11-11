@@ -9,7 +9,11 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   min-height: 100vh;
@@ -146,7 +150,10 @@ button {
   background: linear-gradient(135deg, #7c3aed, #5b21b6);
 }
 
-.btn-yes { z-index: 10; transform-origin: center; }
+.btn-yes {
+  z-index: 10;
+  transform-origin: center;
+}
 
 .btn-no {
   color: #6d28d9;
@@ -154,7 +161,9 @@ button {
   border: 2px solid #c4b5fd;
 }
 
-.btn-no:hover { background: #f5f3ff; }
+.btn-no:hover {
+  background: #f5f3ff;
+}
 
 .btn-yes:hover, .btn-submit:hover {
   background: linear-gradient(135deg, #8b5cf6, #6d28d9);
@@ -172,7 +181,9 @@ button {
   box-shadow: 0 4px 15px rgba(124,58,237,.25);
 }
 
-.btn-submit:hover { transform: translateY(-2px); }
+.btn-submit:hover {
+  transform: translateY(-2px);
+}
 
 /* Inputs */
 input {
@@ -210,7 +221,9 @@ input:focus {
   font-weight: 600;
 }
 
-.btn-color:hover { transform: translateY(-2px); }
+.btn-color:hover {
+  transform: translateY(-2px);
+}
 
 .btn-white {
   color: #2e1065;
@@ -261,8 +274,13 @@ input:focus {
   overflow-wrap: anywhere;
 }
 
-.summary-item:last-child { margin-bottom: 0; }
-.summary-item strong { color: #6d28d9; }
+.summary-item:last-child {
+  margin-bottom: 0;
+}
+
+.summary-item strong {
+  color: #6d28d9;
+}
 
 /* Video Button */
 .video-btn {
@@ -300,11 +318,37 @@ input:focus {
   background: #000;
 }
 
+/* Farewell Screen */
+.farewell-screen {
+  display: none;
+  padding: 35px 10px;
+  animation: fadeIn .7s ease-in-out forwards;
+}
+
+.farewell-screen h1 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.farewell-screen p {
+  color: #5d35a8;
+  font-size: .95rem;
+}
+
 /* Responsive */
 @media (max-width: 480px) {
-  .card { padding: 30px 20px; }
-  h1 { font-size: 1.3rem; }
-  .video-btn { padding: 10px 20px; font-size: .82rem; }
+  .card {
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .video-btn {
+    padding: 10px 20px;
+    font-size: .82rem;
+  }
 }
 </style>
 </head>
@@ -379,7 +423,7 @@ input:focus {
     </div>
   </div>
 
-  <!-- STEP 5 - FINAL SCREEN -->
+  <!-- STEP 5 -->
   <div class="step-section" id="step5">
     <h1>Please screenshot and send it to me</h1>
 
@@ -401,19 +445,22 @@ input:focus {
       </div>
     </div>
 
-    <!-- VIDEO BUTTON -->
     <button class="video-btn" id="videoBtn" onclick="playVideo()">
       Click Here ↗
     </button>
 
-    <!-- VIDEO -->
     <div class="video-container" id="videoContainer">
-      <video id="myVideo" controls playsinline preload="metadata">
+      <video id="myVideo" controls playsinline preload="metadata" onended="finishVideo()">
         <source src="channel.mp4" type="video/mp4">
         Your browser does not support video playback.
       </video>
     </div>
 
+    <!-- Appears automatically when the video ends -->
+    <div class="farewell-screen" id="farewellScreen">
+      <h1>See yaaah!</h1>
+      <p>Looking forward to seeing you. Take care!</p>
+    </div>
   </div>
 
 </div>
@@ -467,7 +514,9 @@ $('noBtn').addEventListener('mouseover', growYes);
 function saveDate() {
   const value = $('datetime').value;
 
-  if (!value) return alert('Please pick a date!');
+  if (!value) {
+    return alert('Please pick a date!');
+  }
 
   selectedData.time = new Date(value).toLocaleString('en-US', {
     dateStyle: 'full',
@@ -526,18 +575,32 @@ function chooseColor(color) {
   goToStep(5);
 }
 
-// Play video when clicked
+// Play video
 function playVideo() {
   const video = $('myVideo');
-  const container = $('videoContainer');
 
-  container.style.display = 'block';
+  $('videoContainer').style.display = 'block';
+  $('farewellScreen').style.display = 'none';
+  $('videoBtn').style.display = 'none';
+
+  video.currentTime = 0;
 
   video.play().catch(() => {
+    $('videoBtn').style.display = 'block';
     alert('Please click the video play button.');
   });
+}
 
-  $('videoBtn').textContent = 'Play Video Again ↗';
+// Automatically close video and show farewell
+function finishVideo() {
+  const video = $('myVideo');
+
+  video.pause();
+  video.currentTime = 0;
+
+  $('videoContainer').style.display = 'none';
+  $('videoBtn').style.display = 'none';
+  $('farewellScreen').style.display = 'block';
 }
 </script>
 
