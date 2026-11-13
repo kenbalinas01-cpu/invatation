@@ -388,6 +388,17 @@ input:focus {
   font-size: .95rem;
 }
 
+/* Duck Image */
+.duck-image {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  max-height: 250px;
+  object-fit: contain;
+  margin: 20px auto 0;
+  border-radius: 18px;
+}
+
 /* Responsive */
 @media (max-width: 480px) {
   .card {
@@ -401,6 +412,10 @@ input:focus {
   .video-btn {
     padding: 10px 20px;
     font-size: .82rem;
+  }
+
+  .duck-image {
+    max-width: 220px;
   }
 }
 </style>
@@ -511,7 +526,6 @@ input:focus {
     <!-- CONFIRMATION -->
     <div class="confirmation-box" id="confirmationBox">
       <h2>Are you sure to proceed?</h2>
-      
 
       <div class="confirmation-actions">
         <button class="confirm-btn proceed-btn" onclick="playVideo()">Proceed</button>
@@ -531,6 +545,9 @@ input:focus {
     <div class="farewell-screen" id="farewellScreen">
       <h1>See yaaah!</h1>
       <p>Looking forward to seeing you. Take care!</p>
+
+      <!-- DUCK IMAGE -->
+      <img src="duck.jpg" alt="A cute duck" class="duck-image">
     </div>
   </div>
 
