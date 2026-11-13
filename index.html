@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +51,7 @@ body {
   position: absolute;
   font-size: 26px;
   opacity: .28;
-  filter: grayscale(30%) blur(0.4px);
+  filter: grayscale(30%) blur(.4px);
   animation: floatAesthetic 14s ease-in-out infinite alternate;
 }
 
@@ -301,6 +302,59 @@ input:focus {
   box-shadow: 0 6px 20px rgba(124,58,237,.35);
 }
 
+/* Confirmation Screen */
+.confirmation-box {
+  display: none;
+  margin-top: 20px;
+  padding: 25px 18px;
+  background: rgba(255,255,255,.92);
+  border: 1.5px solid rgba(196,181,253,.6);
+  border-radius: 20px;
+  animation: fadeIn .5s ease-in-out;
+}
+
+.confirmation-box h2 {
+  color: #3b1e6d;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.confirmation-box p {
+  color: #5d35a8;
+  font-size: .9rem;
+  margin-bottom: 20px;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.confirm-btn {
+  padding: 11px 25px;
+  border: none;
+  border-radius: 50px;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.proceed-btn {
+  color: white;
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+}
+
+.back-btn {
+  color: #6d28d9;
+  background: white;
+  border: 2px solid #c4b5fd;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-2px);
+}
+
 /* Video Container */
 .video-container {
   display: none;
@@ -356,7 +410,6 @@ input:focus {
 
 <div class="top-left-floral-bg">🌸</div>
 
-<!-- Enhanced background with more scattered, harmonized flowers -->
 <div class="flower-background">
   <span class="flower" style="top:8%; left:12%; animation-delay:0s;">🌸</span>
   <span class="flower" style="top:20%; left:85%; animation-delay:1.5s;">🌸</span>
@@ -450,10 +503,23 @@ input:focus {
       </div>
     </div>
 
-    <button class="video-btn" id="videoBtn" onclick="playVideo()">
+    <!-- CLICK HERE -->
+    <button class="video-btn" id="videoBtn" onclick="showConfirmation()">
       Click Here ↗
     </button>
 
+    <!-- CONFIRMATION -->
+    <div class="confirmation-box" id="confirmationBox">
+      <h2>Are you sure to proceed?</h2>
+      
+
+      <div class="confirmation-actions">
+        <button class="confirm-btn proceed-btn" onclick="playVideo()">Proceed</button>
+        <button class="confirm-btn back-btn" onclick="goBack()">Go Back</button>
+      </div>
+    </div>
+
+    <!-- VIDEO -->
     <div class="video-container" id="videoContainer">
       <video id="myVideo" controls playsinline preload="metadata" onended="finishVideo()">
         <source src="channel.mp4" type="video/mp4">
@@ -461,7 +527,7 @@ input:focus {
       </video>
     </div>
 
-    <!-- Appears automatically when the video ends -->
+    <!-- FAREWELL -->
     <div class="farewell-screen" id="farewellScreen">
       <h1>See yaaah!</h1>
       <p>Looking forward to seeing you. Take care!</p>
@@ -580,19 +646,31 @@ function chooseColor(color) {
   goToStep(5);
 }
 
-// Play video
+// Show confirmation
+function showConfirmation() {
+  $('videoBtn').style.display = 'none';
+  $('confirmationBox').style.display = 'block';
+}
+
+// Go back to summary
+function goBack() {
+  $('confirmationBox').style.display = 'none';
+  $('videoBtn').style.display = 'block';
+}
+
+// Play video after confirmation
 function playVideo() {
   const video = $('myVideo');
 
+  $('confirmationBox').style.display = 'none';
   $('videoContainer').style.display = 'block';
-  $('farewellScreen').style.display = 'none';
-  $('videoBtn').style.display = 'none';
 
   video.currentTime = 0;
 
   video.play().catch(() => {
-    $('videoBtn').style.display = 'block';
-    alert('Please click the video play button.');
+    $('videoContainer').style.display = 'none';
+    $('confirmationBox').style.display = 'block';
+    alert('Unable to play the video. Please try again.');
   });
 }
 
@@ -604,7 +682,6 @@ function finishVideo() {
   video.currentTime = 0;
 
   $('videoContainer').style.display = 'none';
-  $('videoBtn').style.display = 'none';
   $('farewellScreen').style.display = 'block';
 }
 </script>
